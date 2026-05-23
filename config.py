@@ -20,7 +20,7 @@ UNIVERSES = {
 # Rolling windows (days)
 WINDOWS = [63, 252, 504, 1008, 2016, 4032]
 
-# RPCA parameters (lambda will be set inside trainer)
+# RPCA parameters (lambda will be computed per window as 1/sqrt(min(n,m)))
 MAX_ITER = 100
 TOL = 1e-7
 
