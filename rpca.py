@@ -9,10 +9,14 @@ def rpca(X, lambd=None, max_iter=100, tol=1e-7):
     """
     if lambd is None:
         lambd = 1.0 / np.sqrt(max(X.shape))
-    Y = X / np.max(np.linalg.norm(X, 2), np.linalg.norm(X, np.inf))
+    # Scale initial Y by the maximum of the spectral and infinity norms
+    norm2 = np.linalg.norm(X, 2)
+    norm_inf = np.linalg.norm(X, np.inf)
+    scaling = max(norm2, norm_inf)
+    Y = X / scaling if scaling != 0 else X
     L = np.zeros_like(X)
     S = np.zeros_like(X)
-    mu = 1.25 / np.linalg.norm(X, 2)
+    mu = 1.25 / norm2 if norm2 != 0 else 1.0
     rho = 1.5
     for _ in range(max_iter):
         # Update L
