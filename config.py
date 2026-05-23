@@ -20,8 +20,7 @@ UNIVERSES = {
 # Rolling windows (days)
 WINDOWS = [63, 252, 504, 1008, 2016, 4032]
 
-# RPCA parameters
-LAMBDA = 1.0 / np.sqrt(max(window_size, 1))   # will be computed per window
+# RPCA parameters (lambda will be set inside trainer)
 MAX_ITER = 100
 TOL = 1e-7
 
